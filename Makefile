@@ -176,13 +176,18 @@ schema-validate:
 	$(CONSOLE) doctrine:schema:validate -vvv
 
 # === Tests ===
-test: db-test
+test: test-frontend test-backend ## Run all tests (frontend + backend)
+
+test-frontend: ## Run frontend unit tests (Vitest)
+	$(PNPM) run test
+
+test-backend: db-test ## Run all backend tests (PHPUnit)
 	$(PHP_BIN) bin/phpunit --testdox
 
-test-unit:
+test-unit: ## Run backend unit tests
 	$(PHP_BIN) bin/phpunit --testdox --testsuite=Unit
 
-test-integration:
+test-integration: ## Run backend integration tests
 	$(PHP_BIN) bin/phpunit --testdox --testsuite=Integration
 
 db-test: ## Create and migrate the test database

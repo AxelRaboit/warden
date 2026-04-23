@@ -1,0 +1,21 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}{{ 'nav.vault'|trans }} - {{ parent() }}{% endblock %}
+
+{% block page_header_slot %}
+    {{ include('components/page_header.html.twig', {title: 'nav.vault'|trans}) }}
+{% endblock %}
+
+{% block body %}
+    <div {{ vue_component('VaultApp', {
+        salt: argon2Salt,
+        listPath: path('vault_entries_list'),
+        createPath: path('vault_entries_create'),
+        updatePath: path('vault_entries_update', {id: '__id__'}),
+        deletePath: path('vault_entries_delete', {id: '__id__'}),
+        foldersListPath: path('vault_folders_list'),
+        foldersCreatePath: path('vault_folders_create'),
+        foldersUpdatePath: path('vault_folders_update', {id: '__id__'}),
+        foldersDeletePath: path('vault_folders_delete', {id: '__id__'}),
+    }) }} class="flex-1"></div>
+{% endblock %}

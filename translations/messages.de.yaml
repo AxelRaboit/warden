@@ -100,6 +100,7 @@ impersonation:
 
 nav:
   dashboard: "Übersicht"
+  vault: "Tresor"
   administration: "Administration"
   profile: "Mein Profil"
 

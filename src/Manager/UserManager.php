@@ -29,6 +29,7 @@ final readonly class UserManager implements UserManagerInterface
         $user->setEmail($email);
         $user->setPassword($this->passwordHasher->hashPassword($user, $password));
         $user->setRoles($isAdmin ? [UserRoleEnum::Admin->value] : []);
+        $user->setArgon2Salt(bin2hex(random_bytes(32)));
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();

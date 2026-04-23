@@ -100,6 +100,7 @@ impersonation:
 
 nav:
   dashboard: "Panel de control"
+  vault: "Bóveda"
   administration: "Administración"
   profile: "Mi perfil"
 

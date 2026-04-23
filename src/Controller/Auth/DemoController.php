@@ -31,7 +31,7 @@ final class DemoController extends AbstractController
         if (!$this->isCsrfTokenValid('demo_login', $request->request->get('_csrf_token'))) {
             $this->addFlash('error', 'error.csrf_invalid');
 
-            return $this->redirectToRoute('admin_login');
+            return $this->redirectToRoute('app_login');
         }
 
         $user = $userRepository->findDemoUser();
@@ -39,7 +39,7 @@ final class DemoController extends AbstractController
         if (!$user instanceof User) {
             $this->addFlash('error', 'demo.unavailable');
 
-            return $this->redirectToRoute('admin_login');
+            return $this->redirectToRoute('app_login');
         }
 
         $security->login($user, firewallName: 'main');

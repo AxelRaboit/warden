@@ -8,6 +8,7 @@ import "@/css/sidebar.css";
 import {
     LayoutDashboard,
     Shield,
+    KeyRound,
     LogOut,
     Moon,
     Sun,
@@ -24,9 +25,10 @@ const props = defineProps({
     activeRoute: { type: String, default: "" },
     logoutCsrf: { type: String, default: "" },
     dashboardPath: { type: String, default: "/admin" },
+    vaultPath: { type: String, default: "/vault" },
     administrationPath: { type: String, default: "/dev/dashboard" },
     profilePath: { type: String, default: "/admin/profile" },
-    logoutPath: { type: String, default: "/admin/logout" },
+    logoutPath: { type: String, default: "/logout" },
     locale: { type: String, default: "fr" },
     isDev: { type: Boolean, default: false },
     appVersion: { type: String, default: "" },
@@ -54,6 +56,7 @@ function closeMobile() { mobileOpen.value = false; document.body.style.overflow 
 
 const navItems = [
     { route: "admin_dashboard", path: props.dashboardPath, label: t("nav.dashboard"), icon: LayoutDashboard, activeColor: "indigo" },
+    { route: "vault", path: props.vaultPath, label: t("nav.vault"), icon: KeyRound, activeColor: "indigo" },
     ...(props.isDev ? [{ route: "dev_", path: props.administrationPath, label: t("nav.administration"), icon: Shield, activeColor: "rose" }] : []),
 ];
 
@@ -94,7 +97,7 @@ function isActive(route) {
         </div>
 
         <div class="sh-logo-expanded items-center gap-3 border-b border-line px-4 py-3 shrink-0">
-            <div class="w-8 h-8 rounded-full bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-sm font-semibold shrink-0">
+            <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-semibold shrink-0">
                 {{ userInitial }}
             </div>
             <div class="flex flex-col min-w-0">

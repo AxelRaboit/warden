@@ -44,6 +44,7 @@ class AppFixtures extends Fixture
         $user->setEmail('admin@warden.app')
              ->setName('Admin User')
              ->setRoles([UserRoleEnum::Admin->value])
+             ->setArgon2Salt(bin2hex(random_bytes(32)))
              ->setPassword($this->hasher->hashPassword($user, 'password'));
         $manager->persist($user);
 
@@ -53,6 +54,7 @@ class AppFixtures extends Fixture
                  ->setName('Demo User')
                  ->setRoles([UserRoleEnum::User->value])
                  ->setIsDemo(true)
+                 ->setArgon2Salt(bin2hex(random_bytes(32)))
                  ->setPassword($this->hasher->hashPassword($demoUser, 'demo'));
         $manager->persist($demoUser);
 

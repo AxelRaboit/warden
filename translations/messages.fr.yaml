@@ -100,6 +100,7 @@ impersonation:
 
 nav:
   dashboard: "Tableau de bord"
+  vault: "Coffre-fort"
   administration: "Administration"
   profile: "Mon profil"
 

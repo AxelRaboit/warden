@@ -44,6 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 5, enumType: LocaleEnum::class)]
     private LocaleEnum $locale = LocaleEnum::French;
 
+    #[ORM\Column(length: 64)]
+    private string $argon2Salt = '';
+
     #[ORM\Column]
     private bool $isDemo = false;
 
@@ -116,6 +119,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLocale(LocaleEnum $locale): static
     {
         $this->locale = $locale;
+
+        return $this;
+    }
+
+    public function getArgon2Salt(): string
+    {
+        return $this->argon2Salt;
+    }
+
+    public function setArgon2Salt(string $argon2Salt): static
+    {
+        $this->argon2Salt = $argon2Salt;
 
         return $this;
     }
