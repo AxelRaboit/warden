@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant hover (&:hover);
+
+@import "./theme.css";
+@import "./base.css";
+@import "./editor.css";
+@import "./prose.css";
+@import "./blocks.css";

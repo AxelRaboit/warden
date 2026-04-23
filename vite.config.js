@@ -1,0 +1,36 @@
+import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
+import vue from '@vitejs/plugin-vue';
+import symfonyPlugin from 'vite-plugin-symfony';
+import path from 'path';
+
+export default defineConfig({
+    plugins: [
+        tailwindcss(),
+        vue(),
+        symfonyPlugin({ stimulus: true }),
+    ],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'assets'),
+        },
+    },
+    build: {
+        rolldownOptions: {
+            input: {
+                app: './assets/app.js',
+                flash: './assets/flash.js',
+                theme: './assets/theme.js',
+                guest: './assets/guest/index.js',
+            },
+            output: {
+                manualChunks(id) {
+                    if (!id.includes('node_modules')) return;
+                    if (id.includes('lucide-vue-next')) return 'vendor-icons';
+                    if (id.includes('axios')) return 'vendor-utils';
+                    if (id.includes('vue-i18n') || id.includes('vue-sonner') || id.includes('/vue/') || id.includes('/vue@')) return 'vendor-vue';
+                },
+            },
+        },
+    },
+});
