@@ -84,7 +84,7 @@ jobs:
       - name: Create test database
         env:
           PGPASSWORD: "!ChangeMe!"
-        run: psql -h 127.0.0.1 -U app -c "CREATE DATABASE warden_test;"
+        run: psql -h 127.0.0.1 -U app -d warden -c "CREATE DATABASE warden_test;"
 
       - name: Run migrations
         run: php bin/console doctrine:migrations:migrate --no-interaction
